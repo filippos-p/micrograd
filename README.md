@@ -17,6 +17,11 @@ gradient of the output with respect to every `Value` it depends on —
 this is backpropagation, and it's exactly how gradients are computed
 in real neural networks (just at a much smaller scale here).
 
+A `Neuron` built on `Value` is just this idea applied to a weighted
+sum followed by a `tanh`:
+
+![A single neuron: inputs weighted and summed, then passed through tanh](docs/neuron_computation.svg)
+
 ## Why not just write one big symbolic formula and differentiate it?
 
 Because for any graph beyond a handful of operations, the symbolic
@@ -79,6 +84,13 @@ n = MLP(3, [4, 4, 1])   # 3 inputs -> 4 -> 4 -> 1 output
 ypred = n([2.0, 3.0, -1.0])
 ```
 
+`MLP(3, [4, 4, 1])` stacks neurons into layers, one layer's output
+feeding the next — a forward pass computes left-to-right, a backward
+pass (via `.backward()`) sends gradients right-to-left through the
+same graph:
+
+![3-4-4-1 MLP with forward and backward pass directions marked](docs/mlp_architecture.svg)
+
 Training loop (gradient descent, minimizing loss ⇒ `-=`):
 
 ```python
@@ -94,3 +106,9 @@ for k in range(steps):
 ```
 
 See `example.py` for a runnable version.
+
+Each `p.data += -lr * p.grad` update nudges a weight down its local
+slope of the loss. Since the step size scales with the gradient, steps
+naturally shrink as the slope flattens near a minimum:
+
+![Gradient descent: a weight moving downhill, larger steps on steep slopes, smaller steps near the minimum](docs/gradient_descent.svg)
