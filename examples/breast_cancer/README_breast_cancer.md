@@ -80,7 +80,7 @@ consistently regardless of how many samples are in the batch.
 ## Result
 
 After 20 full-batch gradient descent steps (`EPOCHS=20`, `LR=0.05`):
-loss dropped from ~1.29 to ~0.17, **97.4% accuracy on the held-out
+loss dropped from ~1.29 to ~0.17, **95.6% accuracy on the held-out
 test set**.
 
 ## Notes
