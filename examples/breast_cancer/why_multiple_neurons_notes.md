@@ -81,7 +81,7 @@ set `w1x1 + w2x2 = c` for some constant `c` — every point on that
 line maps to the same output `c`, for the same reason: it's one
 equation, one condition, with a whole line's worth of solutions.
 
-![Points on the same line collapse to one output; the kernel is the line through the origin where f=0](docs/kernel_collapse_r2_to_r1.svg)
+![Points on the same line collapse to one output; the kernel is the line through the origin where f=0](https://github.com/filippos-p/micrograd/raw/main/micrograd/docs/kernel_collapse_r2_to_r1.svg)
 
 Each **linearly independent** equation (= each neuron whose weight vector
 isn't just a multiple of another neuron's) adds one independent constraint, 
@@ -92,7 +92,7 @@ non-parallel weight vectors), the only point satisfying *both at the
 same time* is the intersection of two non-parallel lines through the
 origin — which is just the origin itself:
 
-![Two independent equations intersect only at the origin; distinct inputs stay distinct](docs/full_rank_r2_to_r2.svg)
+![Two independent equations intersect only at the origin; distinct inputs stay distinct](https://github.com/filippos-p/micrograd/raw/main/micrograd/docs/full_rank_r2_to_r2.svg)
 
 If `dim(ker f) = 0`, the system has the trivial solution `{0}` only —
 so there aren't infinite solutions for every line in the kernel,
